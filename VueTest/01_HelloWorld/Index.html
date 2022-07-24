@@ -8,13 +8,19 @@
 <body>
     <div id="app">
         {{message}}
+        <br/>
+        <input type="text" v-model="username">
+        <div id="username">
+            username: {{username}}
+        </div>
     </div>
 
     <script>
         var app = new Vue({
             el: '#app',
             data: {
-                message: 'Hello World'
+                message: 'Hello World',
+                username: ''
             }
         });
     </script>
