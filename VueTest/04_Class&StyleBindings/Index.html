@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+    <title>04_class与style绑定</title>
+    <script src="https://unpkg.com/vue@2"></script>
+    <style>
+        .AClass {
+            color: red;
+        }
+        
+        .BClass {
+            color: green;
+        }
+        
+        .CClass {
+            font-size: 30;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2>1. class绑定： :class='xxx'</h2>
+        <p :class="className">xxx是字符串</p>
+        <p :class="{AClass:isA, BClass:isB}">xxx是对象</p>
+        <h2>2. style绑定</h2>
+        <p :style="{color:activeColor, fontSize}">style绑定</p>
+        <button @click="btnClick">刷新页面</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                className: 'AClass',
+                isA: false,
+                activeColor: 'red',
+                fontSize: '20px',
+            },
+            methods: {
+                btnClick() {
+                    console.log('click');
+                    this.className = 'BClass';
+                    this.isB = true;
+                    this.activeColor = 'blue';
+                    this.fontSize = '30px';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
