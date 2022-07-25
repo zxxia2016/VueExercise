@@ -7,6 +7,24 @@
 
 <body>
     <div id="app">
+        <!-- array -->
+        <ul>
+            <li v-for=" (item, index) in persons" :key="index">
+                {{index}}---{{item.name}}---{{item.age}}
+                <button @click="deletePerson(index)">删除</button>
+                <button @click="updatePerson(index, {name:'Cat', age: 16})">更新</button>
+            </li>
+
+        </ul>
+
+        <button @click="addPerson({name:'Mary', age: 12})">添加</button>
+
+        <!-- object -->
+        <ul>
+            <li v-for="(value, key,index) in myObject">{{ index }}. {{ key }}: {{ value }}</li>
+        </ul>
+        <!-- with a Range -->
+        <span v-for="n in 10">{{n}}</span>
 
     </div>
 
@@ -14,10 +32,36 @@
         var app = new Vue({
             el: '#app',
             data: {
-
+                persons: [{
+                    name: 'John',
+                    age: 28
+                }, {
+                    name: 'Jack',
+                    age: 27
+                }, {
+                    name: 'Andy',
+                    age: 26
+                }, {
+                    name: 'Rose',
+                    age: 25
+                }, ],
+                myObject: {
+                    title: 'How to do lists in Vue',
+                    author: 'Jane Doe',
+                    publishedAt: '2016-04-10'
+                }
             },
             methods: {
-
+                deletePerson(index) {
+                    this.persons.splice(index, 1);
+                },
+                updatePerson(index, object) {
+                    this.persons[index].name = object.name;
+                    this.persons[index].age = object.age;
+                },
+                addPerson(newP) {
+                    this.persons.push(newP);
+                }
             }
         });
     </script>

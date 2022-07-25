@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<head>
+    <title>列表搜索、升序、降序</title>
+    <script src="https://unpkg.com/vue@2"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- array -->
+        <input type="text" v-model="strSearch">
+        <ul>
+            <li v-for=" (item, index) in filterList" :key="index">
+                {{index}}---{{item.name}}---{{item.age}}
+                <button @click="deletePerson(index)">删除</button>
+                <button @click="updatePerson(index, {name:'Cat', age: 16})">更新</button>
+            </li>
+        </ul>
+        <button @click="clickOrderType(0)">原本排序</button>
+        <button @click="clickOrderType(1)">升序排序</button>
+        <button @click="clickOrderType(2)">降序排序</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                persons: [{
+                    name: 'John',
+                    age: 28
+                }, {
+                    name: 'Jack',
+                    age: 24
+                }, {
+                    name: 'Andy',
+                    age: 26
+                }, {
+                    name: 'Rose',
+                    age: 25
+                }, ],
+                strSearch: '',
+                orderType: 0
+            },
+            computed: {
+                filterList() {
+                    console.log(111);
+                    const {
+                        strSearch,
+                        persons,
+                        orderType
+                    } = this;
+                    const list = persons.filter(person => person.name.indexOf(strSearch) !== -1);
+                    if (orderType === 0) {
+                        return list;
+                    }
+                    list.sort((a, b) => {
+                        if (orderType == 1) {
+                            return a.age - b.age;
+                        } else {
+                            return b.age - a.age;
+                        }
+                    })
+                    return list;
+                }
+            },
+            methods: {
+                clickOrderType(type) {
+                    console.log(type);
+                    this.orderType = type;
+                }
+            }
+
+        });
+    </script>
+</body>
+
+</html>

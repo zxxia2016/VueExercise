@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<head>
+    <title>事件监听</title>
+    <script src="https://unpkg.com/vue@2"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>1. 绑定监听</h2>
+        <button @click="btnClick">按钮</button>
+        <button @click="btnClick1(1)">按钮1</button>
+        <button @click="btnClick2(2, $event)">按钮2</button>
+        <button @click="btnClick3">按钮3</button>
+
+        <h2>2. 事件修饰符</h2>
+        <!-- 阻止事件传递，自定义事件功能 -->
+        <a href="https://www.baidu.com/" @click.prevent="btnClickBaidu">百度一下</a>
+        <dir style=" width: 200px;height: 200px; background-color: red " @click="btnClickDiv1 ">
+            <!-- 阻止冒泡 -->
+            <dir style="width: 100px;height: 100px; background-color: blue; " @click.stop=" btnClickDiv2 "></dir>
+        </dir>
+
+        <h2>3. 按键修饰符</h2>
+        <input type="text" @keyup.13="onKeyUp">
+        <input type="text" @keyup.enter="onKeyUp">
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                btnClick() {
+                    alert(`0`);
+                },
+                btnClick1(data) {
+                    alert(`${data}`);
+                },
+                btnClick2(data, event) {
+                    alert(`${data}, ${event.target.innerHTML}`);
+                },
+                btnClickDiv1() {
+                    alert(`div1`);
+                },
+                btnClickDiv2() {
+                    alert(`div2`);
+                },
+                btnClickBaidu() {
+                    alert(`baidu`);
+                },
+                onKeyUp(event) {
+                    console.log(event.keyCode)
+                    alert(event.target.value)
+                },
+            },
+            methods: {
+                btnClick3() {
+                    alert('btnClick3');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
