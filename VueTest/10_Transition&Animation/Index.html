@@ -1,21 +1,95 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>过度与动画</title>
     <script src="https://unpkg.com/vue@2"></script>
+    <style>
+        /*指定过渡样式*/
+        
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 1s
+        }
+        /*指定隐藏时的样式*/
+        
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+        /*指定过渡样式*/
+        
+        .move-enter-active {
+            transition: all 1s
+        }
+        
+        .move-leave-active {
+            transition: all 3s
+        }
+        /*指定隐藏时的样式*/
+        
+        .move-enter,
+        .move-leave-to {
+            opacity: 0;
+            transform: translate(20px);
+        }
+        
+        .bounce-enter-active {
+            animation: bounce-in 1s;
+        }
+        
+        .bounce-leave-active {
+            animation: bounce-in 1s reverse;
+        }
+        
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
+        <button @click="show = !show">Toggle1</button>
+        <transition name="fade">
+            <p v-show="show">hello1</p>
+        </transition>
+        <button @click="onClick2">Toggle2</button>
+        <transition name="move">
+            <p v-show="show1">hello2</p>
+        </transition>
+        <button @click="onClick3">Toggle3</button>
+        <br>
+        <transition name="bounce">
+            <p v-show="show2" style="display: inline-block;">hello3</p>
+        </transition>
 
     </div>
 
     <script>
-        var app = new Vue({
+        new Vue({
             el: '#app',
-            data: {},
+            data: {
+                show: true,
+                show1: true,
+                show2: true,
+            },
             methods: {
-
+                onClick2() {
+                    this.show1 = !this.show1;
+                },
+                onClick3() {
+                    this.show2 = !this.show2;
+                }
             }
         });
     </script>
