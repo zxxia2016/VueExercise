@@ -1,0 +1,23 @@
+操作DOM
+<input type="text" v-model="username">
+<input type="text" @keyup.enter="onKeyUp">
+<img v-bind:src="imageUrl" alt="vue">
+<div id="username">username: {{username}}</div>
+//使用Vue.filter添加filterName
+<div>{{myData | filterName}}</div>
+//@click.prevent @click.stop
+<button v-on:click="onClick('data')">Button2</button>
+<li v-for=" (item, index) in persons" :key="index">
+操作css
+<p :class="className">xxx是字符串</p>
+.xxx-enter-active,
+.xxx-leave-active,
+.xxx-enter,
+.xxx-leave-to,
+控制显隐
+<p v-if="ok">成功</p>
+<p v-show="ok">进入</p>
+操作动画
+
+Vue实例生命周期
+created、mounted、updated、destroyed

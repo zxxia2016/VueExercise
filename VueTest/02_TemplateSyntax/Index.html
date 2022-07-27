@@ -14,10 +14,10 @@
         {{message.toUpperCase()}}
         <!-- 2. 数据绑定 -->
         <!-- v-bind或者: -->
-        <img :src="imageUrl" alt="vue">
+        <img v-bind:src="imageUrl" alt="vue">
         <!-- 3. 绑定事件 -->
         <!-- v-on或者@click -->
-        <button @click="onClick">Button</button>
+        <button v-on:click="onClick">Button</button>
         <button @click="onClick('data')">Button2</button>
     </div>
 
