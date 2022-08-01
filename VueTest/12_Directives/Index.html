@@ -3,8 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>指令</title>
+    <title>默认指令</title>
     <script src="https://unpkg.com/vue@2"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 <!--
 常用内置指令
@@ -23,17 +28,21 @@
 
 <body>
     <div id="app">
-
+        <p ref='p_web'>www.baidu.com</p>
+        <button @click="btnClick">alert</button>
+        <p>{{msg}}</p>
     </div>
 
     <script>
         new Vue({
             el: '#app',
             data: {
-
+                msg: "hello world!",
             },
             methods: {
-
+                btnClick() {
+                    alert(this.$refs.p_web.textContent);
+                }
             }
         });
     </script>
