@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <div class="container">
-      <Input />
+      <Input :addComment='addComment' />
       <List :comments='comments' />
     </div>
   </div>
@@ -26,6 +26,11 @@ export default {
         { name: 'cat', content: 'good' },
         { name: 'bz', content: 'so so' }
       ]
+    }
+  },
+  methods: {
+    addComment (comment) { 
+      this.comments.unshift(comment)
     }
   }
 }
