@@ -3,7 +3,7 @@
     <Header />
     <div class="container">
       <Input :addComment='addComment' />
-      <List :comments='comments' />
+      <List :comments=' comments' :removeComment='removeComment' />
     </div>
   </div>
 </template>
@@ -31,6 +31,9 @@ export default {
   methods: {
     addComment (comment) { 
       this.comments.unshift(comment)
+    },
+    removeComment (index) {
+      this.comments.splice(index, 1)
     }
   }
 }
