@@ -2,9 +2,9 @@
   <div id="app">
     <div class="todo-container">
       <div class="todo-wrap">
-        <Header :AddTodoItem="AddTodoItem"/>
+        <Header :AddTodoItem="AddTodoItem" />
         <List :list=" list" />
-        <Footer />
+        <Footer :list=" list" :selectAll="selectAll" :removeFinishedItems="removeFinishedItems" />
       </div>
     </div>
   </div>
@@ -33,6 +33,14 @@ export default {
   methods: { 
     AddTodoItem (title) {
       this.list.push({ title: title, finished: false })
+    },
+    selectAll (value) {
+      this.list.forEach(todo => {
+        todo.finished = value
+      })
+    },
+    removeFinishedItems () {
+      this.list = this.list.filter(todo => !todo.finished)
     }
   }
 }

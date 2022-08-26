@@ -1,17 +1,47 @@
 <template>
     <div class="todo-footer">
         <label>
-            <input type="checkbox" />
+            <input type="checkbox" v-model="checkAllFinished"/>
         </label>
         <span>
-            已完成0/全部2
+            已完成{{finishedCount}}/全部{{list.length}}
         </span>
-        <button class="btn btn-danger">清除已完成任务</button>
+        <button class="btn btn-danger" @click="onBtnClick">清除已完成任务</button>
     </div>
 </template>
 <script>
 export default {
-
+  props: {
+    list: Array,
+    selectAll: Function,
+    removeFinishedItems: Function
+  },
+  computed: {
+    finishedCount () {
+      let count = 0
+      for (let i = 0; i < this.list.length; i++) {
+        const item = this.list[i]
+        if (item.finished) {
+          count++
+        }
+      }
+      return count
+    },
+    checkAllFinished: {
+      get () {
+        return this.finishedCount === this.list.length && this.finishedCount > 0
+      },
+      set (value) {
+        this.selectAll(value)
+      }
+    }
+    
+  },
+  methods: {
+    onBtnClick () {
+      this.removeFinishedItems()
+    }
+  }
 }
 </script>
 <style>
