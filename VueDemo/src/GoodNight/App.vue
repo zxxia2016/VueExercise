@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import GoodNight from './components/GoodNight'
+import HelloWorld from './HelloWorld/HelloWorld'
+import GoodNight from './GoodNight/GoodNight'
 
 export default {
   name: 'App',
