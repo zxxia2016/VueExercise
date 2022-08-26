@@ -1,43 +1,80 @@
 <template>
   <div id="app">
-    <Header />
-    <div class="container">
-      <Input :addComment='addComment' />
-      <List :comments=' comments' :removeComment='removeComment' />
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <Header />
+        <List :list="list" />
+        <Footer />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Header from './comment/Header'
-import Input from './comment/Input'
-import List from './comment/List'
+import Header from './TodoList/Header.vue'
+import List from './TodoList/List.vue'
+import Footer from './TodoList/Footer.vue'
 export default {
   name: 'App',
   components: {
     Header,
-    Input,  
-    List
+    List,
+    Footer
   },
-  data () { 
+  data () {
     return {
-      comments: [
-        { name: 'bob', content: 'so easy' },
-        { name: 'cat', content: 'good' },
-        { name: 'bz', content: 'so so' }
+      list: [
+        { finished: false, title: 'xxxx' },
+        { finished: false, title: 'yyyy' },
+        { finished: false, title: 'zzzz' }
       ]
-    }
-  },
-  methods: {
-    addComment (comment) { 
-      this.comments.unshift(comment)
-    },
-    removeComment (index) {
-      this.comments.splice(index, 1)
     }
   }
 }
 </script>
 
 <style>
+
+body {
+  background: #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+
+.btn:focus {
+  outline: none;
+}
+.todo-container {
+  width:600px;
+  margin:0 auto;
+}
+
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
 </style>
