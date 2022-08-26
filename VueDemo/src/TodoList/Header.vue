@@ -7,6 +7,9 @@
 </template>
 <script>
 export default {
+  props: {
+    AddTodoItem: Function   
+  },
   data () {
     return {
       title: ''
@@ -14,13 +17,19 @@ export default {
   },
   methods: {
     onBtnEnter () {
-
+      if (window.confirm('confirm add todo ?')) {
+        this.AddTodoItem(this.title)
+      }
     }
   }
 }
 </script>
 <style>
 
+/*让div内部文字居中*/
+.todo-header {
+    text-align: center;
+}
 /* border 和 outline 相似， outline 不占据空间，绘制于元素内容周围。*/
 .todo-header input {
     width: 560px;

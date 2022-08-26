@@ -3,7 +3,7 @@
         <!-- Label当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上 -->
         <label>
             <input type="checkbox" v-model="item.finished" />
-            <span>{{item.title}}</span>
+            <span>&nbsp;{{item.title}}</span>
         </label>
         <button class="btn btn-danger" style="display:none">删除</button>
     </li>
@@ -27,7 +27,7 @@ li {
 }
 
 li label {
-    float: left;
+    /* float: left; */
     cursor: pointer;
 }
 
